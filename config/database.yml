@@ -23,6 +23,8 @@ default: &default
 
 development:
   <<: *default
+  username: postgres
+  password: dante1919
   database: Psychology_Appointment_API_development
 
   # The specified database role being used to connect to postgres.
