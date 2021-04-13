@@ -15,9 +15,7 @@ gem 'puma', '~> 5.0'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-group :development, :test do
-  gem 'rspec-rails', '~> 3.5'
-end
+
 # Test Stuff
 group :test do
   gem 'factory_bot_rails', '~> 4.0'
@@ -37,6 +35,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do

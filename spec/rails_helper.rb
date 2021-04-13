@@ -1,5 +1,4 @@
 # require database cleaner at the top level
-require 'spec_helper'
 require 'database_cleaner'
 require 'shoulda-matchers'
 
