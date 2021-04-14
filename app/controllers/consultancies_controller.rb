@@ -1,5 +1,5 @@
 class ConsultanciesController < ApplicationController
-  before_action :set_consultancy, only [:show, :update, :destroy]
+  before_action :set_consultancy, only %i[show update destroy]
 
   def index
     @consultancies = Consultancy.all
