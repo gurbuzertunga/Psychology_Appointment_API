@@ -1,4 +1,4 @@
 class Appointment < ApplicationRecord
-  belongs_to :consultancies
-  validates_presence_of :date, :time, :problem
+  belongs_to :consultancy
+  validates_presence_of :time, :problem
 end

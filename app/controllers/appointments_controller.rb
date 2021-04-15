@@ -28,7 +28,7 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.permit(:date, :time, :problem, #:consultancy_id maybe?#)
+    params.permit(:time, :problem)
   end
 
   def set_consultancy
