@@ -1,6 +1,5 @@
 FactoryBot.define do
-  factory :item do
-    type { Faker::Lorem.word }
+  factory :consultancy do
     area { Faker::Lorem.word }
   end
 end

@@ -1,9 +1,9 @@
 class ConsultanciesController < ApplicationController
-  before_action :set_consultancy, only %i[show update destroy]
+  before_action :set_consultancy, only: [:show, :update, :destroy]
 
   def index
     @consultancies = Consultancy.all
-    json.response(@consultancies)
+    json_response(@consultancies)
   end
   
   def create
@@ -17,12 +17,12 @@ class ConsultanciesController < ApplicationController
 
   def update
     @consultancy.update(consultancy_params)
-    head: no_content
+    head :no_content
   end
 
   def destroy
     @consultancy.destroy
-    head: no_content
+    head :no_content
   end
 
   private

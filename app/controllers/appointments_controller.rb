@@ -1,9 +1,9 @@
 class AppointmentsController < ApplicationController
-  before_action :set_consultancy
   before_action :set_appointment, only: [:show, :update, :destroy]
 
   def index
-    json_response(@consultancy.appointments)
+    @appointments = Appointment.all
+    json_response(@appointments)
   end
 
   def show
@@ -11,7 +11,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @consultancy.appointments.create!(appointment_params)
+    @appointment = Appointment.create!(appointment_params)
     json_response(@appointment, :created)
   end
 
@@ -28,14 +28,10 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.permit(:time, :problem)
-  end
-
-  def set_consultancy
-    @consultancy = Consultancy.find(params[:id])
+    params.permit(:time, :problem, :consultancy_id)
   end
 
   def set_appointment
-    @appointment = @consultancy.appointments.find_by!(id: params[:id]) if @consultancy
+    @appointment = Appointment.find(params[:id])
   end
 end

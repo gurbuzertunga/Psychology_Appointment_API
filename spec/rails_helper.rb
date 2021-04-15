@@ -1,6 +1,4 @@
 # require database cleaner at the top level
-require 'database_cleaner'
-require 'shoulda-matchers'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
