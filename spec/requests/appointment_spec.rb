@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'Appointments API' do
+RSpec.describe 'Appointments API', type: :request do
   # Initialize the test data
-  let!(:consultancy) { create :consultancy }
-  let!(:appointments) { create_list(:appointment, 20, consultancy_id: consultancy.id) }
+  let!(:consultancy) { create(:consultancy) }
   let!(:consultancy_id) { consultancy.id }
+  let!(:appointments) { create_list(:appointment, 20, consultancy_id: consultancy.id) }
   let(:id) { appointments.first.id }
 
-  # Test suite for GET /consultancies/:consultancy_id/appointments
-  describe  'GET /consultancies/:consultancy_id/appointments'
-    before { get "/consultancies/#{consultancy_id}/appointments"}
+  # Test suite for GET /appointments
+  describe  'GET /appointments'
+    before { get '/appointments' }
 
     context 'when consultancy exists' do
       it 'returns status code 200' do
@@ -17,7 +17,7 @@ RSpec.describe 'Appointments API' do
       end
 
       it 'returns all consultancy items' do
-        expect(json_size).to eq(20)
+        expect(json.size).to eq(20)
       end
     end
 

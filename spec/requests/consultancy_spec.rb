@@ -1,11 +1,10 @@
-# spec/requests/consultancies_spec.rb
 require 'rails_helper'
+
 
 RSpec.describe 'Consultancies API', type: :request do
   # initialize test data
   let!(:consultancies) { create_list(:consultancy, 10) }
   let(:consultancy_id) { consultancies.first.id }
-
   # Test suite for GET /consultancies
   describe 'GET /consultancies' do
     # make HTTP get request before each example
@@ -53,13 +52,13 @@ RSpec.describe 'Consultancies API', type: :request do
   # Test suite for POST /consultancies
   describe 'POST /consultancies' do
     # valid payload
-    let(:valid_attributes) { { type: 'Couples Counselling', area: 'Family' } }
+    let(:valid_attributes) { { area: 'Family' } }
 
     context 'when the request is valid' do
       before { post '/consultancies', params: valid_attributes }
 
       it 'creates a consultancy' do
-        expect(json['type']).to eq('Couples Counselling')
+        expect(json['area']).to eq('Family')
       end
 
       it 'returns status code 201' do
@@ -76,7 +75,7 @@ RSpec.describe 'Consultancies API', type: :request do
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match(/Validation failed: Area by can't be blank/)
+          .to match("{\"message\":\"Validation failed: Area can't be blank\"}")
       end
     end
   end
