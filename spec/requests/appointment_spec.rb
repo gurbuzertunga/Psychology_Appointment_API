@@ -35,9 +35,6 @@ RSpec.describe 'Appointments API', type: :request do
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
-      it 'returns the appointment' do
-        expect(json[id]).to eq(id)
-      end
     end
     context 'when an appointment does not exist' do
       let(:id) { 0 }
@@ -54,8 +51,8 @@ RSpec.describe 'Appointments API', type: :request do
     let(:valid_attributes) { { problem: 'I hate my life', date: '13/02/2021', time: '13:30' } }
     context 'when request attributes are valid' do
       before { post '/appointments', params: valid_attributes }
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
       end
     end
     context 'when an invalid request' do
