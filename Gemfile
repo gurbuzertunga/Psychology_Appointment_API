@@ -16,6 +16,7 @@ gem 'puma', '~> 5.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt', '~> 3.1.7'
+gem 'jwt'
 # Test Stuff
 group :test do
   gem 'factory_bot_rails', '~> 4.0'
