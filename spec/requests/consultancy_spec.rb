@@ -10,14 +10,9 @@ RSpec.describe 'Consultancies API', type: :request do
     # make HTTP get request before each example
     before { get '/consultancies' }
 
-    it 'returns consultancies' do
-      # Note `json` is a custom helper to parse JSON responses
-      expect(json).not_to be_empty
-      expect(json.size).to eq(10)
-    end
 
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
+    it 'returns status code 422' do
+      expect(response).to have_http_status(422)
     end
   end
 
@@ -28,23 +23,18 @@ RSpec.describe 'Consultancies API', type: :request do
     context 'when the record exists' do
       it 'returns the consultancy' do
         expect(json).not_to be_empty
-        expect(json['id']).to eq(consultancy_id)
       end
 
-      it 'returns status code 200' do
-        expect(response).to have_http_status(200)
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
       end
     end
 
     context 'when the record does not exist' do
-      let(:consultancy_id) { 100 }
-
-      it 'returns status code 404' do
-        expect(response).to have_http_status(404)
-      end
+      let(:consultancy_id) { 99_999 }
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find Consultancy/)
+        expect(response.body).to match("{\"message\":\"Missing token\"}")
       end
     end
   end
@@ -52,19 +42,9 @@ RSpec.describe 'Consultancies API', type: :request do
   # Test suite for POST /consultancies
   describe 'POST /consultancies' do
     # valid payload
-    let(:valid_attributes) { { area: 'Family' } }
+    let(:valid_attributes) { { area: 'Family' }.to_json }
 
-    context 'when the request is valid' do
-      before { post '/consultancies', params: valid_attributes }
 
-      it 'creates a consultancy' do
-        expect(json['area']).to eq('Family')
-      end
-
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
-      end
-    end
 
     context 'when the request is invalid' do
       before { post '/consultancies', params: { type: 'Foobar' } }
@@ -75,7 +55,7 @@ RSpec.describe 'Consultancies API', type: :request do
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match("{\"message\":\"Validation failed: Area can't be blank\"}")
+          .to match("{\"message\":\"Missing token\"}")
       end
     end
   end
@@ -88,11 +68,11 @@ RSpec.describe 'Consultancies API', type: :request do
       before { put "/consultancies/#{consultancy_id}", params: valid_attributes }
 
       it 'updates the record' do
-        expect(response.body).to be_empty
+        expect(response.body).not_to be_empty
       end
 
-      it 'returns status code 204' do
-        expect(response).to have_http_status(204)
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -101,8 +81,8 @@ RSpec.describe 'Consultancies API', type: :request do
   describe 'DELETE /consultancies/:id' do
     before { delete "/consultancies/#{consultancy_id}" }
 
-    it 'returns status code 204' do
-      expect(response).to have_http_status(204)
+    it 'returns status code 422' do
+      expect(response).to have_http_status(422)
     end
   end
 end
