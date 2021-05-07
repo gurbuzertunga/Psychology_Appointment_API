@@ -28,7 +28,7 @@ class ConsultanciesController < ApplicationController
   private
 
   def consultancy_params
-    params.permit(:area)
+    params.permit(:area, :details)
   end
 
   def set_consultancy
