@@ -2,8 +2,19 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :update, :destroy]
 
   def index
-    @appointments = current_user.appointments
-    json_response(@appointments)
+    if current_user.doctor === true
+      @appointments = Appointment.all
+      Appointment.all.each do |appointment|
+        @username = appointment.user.name
+      end
+    else
+      @appointments = current_user.appointments
+      Appointment.all.each do |appointment|
+        @username = appointment.user.name
+      end
+    end
+    
+    json_response(appointments: @appointments, username: @username)
   end
 
   def show
@@ -28,7 +39,7 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.permit(:time, :problem, :consultancy_id, :user_id)
+    params.permit(:time, :problem, :date, :consultancy_id, :user_id)
   end
 
   def set_appointment
