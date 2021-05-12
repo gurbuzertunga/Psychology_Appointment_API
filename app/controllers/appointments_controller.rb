@@ -22,6 +22,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create
+    puts current_user
     @appointment = current_user.appointments.create!(appointment_params)
     json_response(@appointment, :created)
   end
