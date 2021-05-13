@@ -64,6 +64,8 @@ To get a local copy of the repository please run the following commands on your 
 $ git clone git@github.com:gurbuzertunga/Psychology_Appointment_API.git
 $ cd Psychology_Appointment_API
 $ git checkout feature
+$ rails db:migrate
+$ rails db:seed
 
 ```
 
