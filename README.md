@@ -31,7 +31,7 @@ To build this application we used:
 - Linters ( Rubocop )
 
 ## Live-Demo
-[the link for the API](https://arcane-taiga-86251.herokuapp.com/)
+[the link for the API](https://safe-river-40190.herokuapp.com/)
 [The live demo link of front end](https://psychology-appointments.netlify.app/)
 
 ## Features
