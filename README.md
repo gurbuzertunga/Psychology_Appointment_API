@@ -32,7 +32,7 @@ To build this application we used:
 
 ## Live-Demo
 [the link for the API](https://safe-river-40190.herokuapp.com/)
-[The live demo link of front end](https://psychology-appointments.netlify.app/)
+[The live demo link of front end](https://psychology-appointments-app.vercel.app/)
 
 ## Features
 
